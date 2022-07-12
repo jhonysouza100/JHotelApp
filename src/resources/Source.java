@@ -18,10 +18,12 @@ import javax.swing.SwingConstants;
 public class Source extends JFrame {
 
     private JPanel statusbar;
-    private JLabel exitLabel;
+    private JLabel exitButtonText;
+    private JLabel exitButtonLabel;
     private JPanel exitPanel;
+    private JLabel minimizeButtonText;
     private JPanel minimizePanel;
-    private JLabel minimizeLabel;
+    private JLabel minimizeButtonLabel;
     private int Xmouse, Ymouse;
     public Source(){
        setIconImage(getIconImage());
@@ -30,6 +32,12 @@ public class Source extends JFrame {
     
     public static void setWallpaper(JLabel label) {
         ImageIcon image = new ImageIcon("src/images/wallpaper.jpeg");
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+        label.setIcon(icon);
+    }
+    
+    public static void setImage(JLabel label, String img) {
+        ImageIcon image = new ImageIcon("src/images/"+img);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
         label.setIcon(icon);
     }
@@ -71,10 +79,12 @@ public class Source extends JFrame {
     public void setFrameStatebar() {
         statusbar = new JPanel();
         exitPanel = new JPanel();
-        exitLabel = new JLabel();
+        exitButtonText = new JLabel();
+        exitButtonLabel = new JLabel();
         minimizePanel = new JPanel();
-        minimizeLabel = new JLabel();
-        statusbar.setBackground(new Color(0, 0, 0));
+        minimizeButtonText =new JLabel();
+        minimizeButtonLabel = new JLabel();
+        
         statusbar.setOpaque(false);
         statusbar.setLayout(null);
         statusbar.addMouseListener(new MouseAdapter() {
@@ -88,8 +98,8 @@ public class Source extends JFrame {
             }
         });
 
-        exitPanel.setBackground(Color.BLACK);
-        exitPanel.setLayout(new BorderLayout(1, 1));
+        exitPanel.setOpaque(false);
+        exitPanel.setLayout(null);
         exitPanel.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 exitPanelMouseClicked(evt);
@@ -103,19 +113,17 @@ public class Source extends JFrame {
                 exitPanelMouseExited(evt);
             }
         });
-
-        exitLabel.setForeground(Color.WHITE);
-        exitLabel.setFont(new Font("Roboto", 1, 24));
-        exitLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        exitLabel.setText("X");
-        exitPanel.add(exitLabel, BorderLayout.CENTER);
+        
+        exitPanel.add(exitButtonText);
+        exitButtonText.setBounds(0, 0, 17, 17);
+        exitPanel.add(exitButtonLabel);
+        exitButtonLabel.setBounds(0, 0, 17, 17);
 
         statusbar.add(exitPanel);
-        exitPanel.setBounds(0, 0, 30, 30);
+        exitPanel.setBounds(5, 5, 17, 17);
         
-        
-        minimizePanel.setBackground(Color.BLACK);
-        minimizePanel.setLayout(new BorderLayout(1, 1));
+        minimizePanel.setOpaque(false);
+        minimizePanel.setLayout(null);
         minimizePanel.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 minimizePanelMouseClicked(evt);
@@ -129,19 +137,22 @@ public class Source extends JFrame {
                 minimizePanelMouseExited(evt);
             }
         });
-
-        minimizeLabel.setForeground(Color.WHITE);
-        minimizeLabel.setFont(new Font("Roboto", 1, 24));
-        minimizeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        minimizeLabel.setText("-");
-        minimizePanel.add(minimizeLabel, BorderLayout.CENTER);
+        
+        minimizePanel.add(minimizeButtonText);
+        minimizeButtonText.setBounds(0, 0, 17, 17);
+        
+        minimizePanel.add(minimizeButtonLabel);
+        minimizeButtonLabel.setBounds(0, 0, 17, 17);
 
         statusbar.add(minimizePanel);
-        minimizePanel.setBounds(30, 0, 30, 30);
+        minimizePanel.setBounds(28, 5, 17, 17);
         
-        statusbar.setBounds(1, 1, getFrameWidth(), 30);
         getContentPane().add(statusbar);
+        statusbar.setBounds(1, 1, getFrameWidth(), 30);
         
+        
+        setImage(exitButtonLabel, "btnRed.png");
+        setImage(minimizeButtonLabel, "btnGreen.png");
         
     }
     private void statebarMousePressed(MouseEvent evt) {
@@ -157,22 +168,26 @@ public class Source extends JFrame {
         System.exit(0);
     }
     private void exitPanelMouseEntered(MouseEvent evt) {
-        exitPanel.setBackground(Color.RED);
-        exitLabel.setForeground(Color.BLACK);
+        exitButtonText.setFont(new Font("Roboto Black", 0, 14));
+        exitButtonText.setHorizontalAlignment(SwingConstants.CENTER);
+        exitButtonText.setText("x");
+        setImage(exitButtonLabel, "btnRedPressed.png");
     }
     private void exitPanelMouseExited(MouseEvent evt) {
-        exitPanel.setBackground(Color.BLACK);
-        exitLabel.setForeground(Color.WHITE);
+        exitButtonText.setText("");
+        setImage(exitButtonLabel, "btnRed.png");
     }
     private void minimizePanelMouseClicked(MouseEvent evt) {
         setExtendedState(ICONIFIED);
     }
     private void minimizePanelMouseEntered(MouseEvent evt) {
-        minimizePanel.setBackground(Color.RED);
-        minimizeLabel.setForeground(Color.BLACK);
+        minimizeButtonText.setFont(new Font("Roboto Black", 0, 24));
+        minimizeButtonText.setHorizontalAlignment(SwingConstants.CENTER);
+        minimizeButtonText.setText("-");
+        setImage(minimizeButtonLabel, "btnGreenPressed.png");
     }
     private void minimizePanelMouseExited(MouseEvent evt) {
-        minimizePanel.setBackground(Color.BLACK);
-        minimizeLabel.setForeground(Color.WHITE);
+        minimizeButtonText.setText("");
+        setImage(minimizeButtonLabel, "btnGreen.png");
     }
 }
