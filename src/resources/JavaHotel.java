@@ -1,6 +1,5 @@
 package resources;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -42,7 +41,7 @@ public class JavaHotel extends JFrame {
         label.setIcon(icon);
     }
     
-    public Icon addImage(JLabel label, String img){
+    public Icon setIcon(JLabel label, String img){
         ImageIcon image = new ImageIcon("src/images/"+img);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
         return icon;

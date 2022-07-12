@@ -73,7 +73,7 @@ public class Login extends JavaHotel {
         img1 = "login1.png";
         img2 = "login2.png";
         loginLabel.setSize(140, 40);
-        loginLabel.setIcon(addImage(loginLabel, img1));
+        loginLabel.setIcon(setIcon(loginLabel, img1));
         loginButton.setBackground(new Color(174, 204, 50));
         loginButton.setLayout(new BorderLayout(0, 0));
         loginButton.addMouseListener(new MouseAdapter() {
@@ -193,17 +193,17 @@ public class Login extends JavaHotel {
     }
 
     private void loginButtonMouseEntered(MouseEvent evt) {
-        loginLabel.setIcon(addImage(loginLabel, img2));
+        loginLabel.setIcon(setIcon(loginLabel, img2));
     }
 
     private void loginButtonMouseExited(MouseEvent evt) {
-        loginLabel.setIcon(addImage(loginLabel, img1));
+        loginLabel.setIcon(setIcon(loginLabel, img1));
     }
 
     private void loginButtonMouseClicked(MouseEvent evt) {
         user = textUser.getText().trim();
         pass = textPass.getText().trim();
-        loginLabel.setIcon(addImage(loginLabel, img1));
+        loginLabel.setIcon(setIcon(loginLabel, img1));
 
         //validate if the fields are not empty
         if (user.trim().equals("Enter your username") || pass.equals("000000")) {
