@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class Source extends JFrame {
+public class JavaHotel extends JFrame {
 
     private JPanel statusbar;
     private JLabel exitButtonText;
@@ -25,7 +25,7 @@ public class Source extends JFrame {
     private JPanel minimizePanel;
     private JLabel minimizeButtonLabel;
     private int Xmouse, Ymouse;
-    public Source(){
+    public JavaHotel(){
        setIconImage(getIconImage());
 
     }

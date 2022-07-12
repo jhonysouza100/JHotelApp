@@ -19,9 +19,9 @@ import javax.swing.SwingConstants;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
 import resources.ConnectionDB;
-import resources.Source;
+import resources.JavaHotel;
 
-public class Open extends Source {
+public class Open extends JavaHotel {
     
     private JLabel date;
     private JScrollPane jScrollPane1;

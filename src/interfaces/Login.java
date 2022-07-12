@@ -21,9 +21,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
-import resources.Source;
+import resources.JavaHotel;
 
-public class Login extends Source {
+public class Login extends JavaHotel {
 
     private JTextField textUser;
     private JSeparator separatorTextUser;
