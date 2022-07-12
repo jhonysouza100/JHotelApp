@@ -37,7 +37,7 @@ public class Open extends JavaHotel {
     
     public Open() {
         initParametersOpen();
-        setFrameStatebar();
+        buildTopBarDecor();
         initComponentsOpen();
         previousFillRowsRequestConnection();
         customerFillTextRequestConnection();

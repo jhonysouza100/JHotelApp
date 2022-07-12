@@ -40,7 +40,7 @@ public class Login extends JavaHotel {
 
     public Login() {
         initParametersLogin();
-        setFrameStatebar();
+        buildTopBarDecor();
         initComponentsLogin();
         setWallpaper(wallpaper);
 
@@ -49,7 +49,6 @@ public class Login extends JavaHotel {
     private void initParametersLogin() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Login");
-        setName("JFrame1");
         setUndecorated(true);
         setResizable(false);
         setSize(560, 400);
@@ -194,6 +193,7 @@ public class Login extends JavaHotel {
 
     private void loginButtonMouseEntered(MouseEvent evt) {
         loginLabel.setIcon(setIcon(loginLabel, img2));
+        setImage(loginLabel, "login1");
     }
 
     private void loginButtonMouseExited(MouseEvent evt) {

@@ -25,22 +25,24 @@ public class JavaHotel extends JFrame {
     private JLabel minimizeButtonLabel;
     private int Xmouse, Ymouse;
     public JavaHotel(){
-       setIconImage(getIconImage());
-
+       setIconImage(getIconImage());//set default icon for all frame
     }
     
+    //set the wallpaper
     public static void setWallpaper(JLabel label) {
         ImageIcon image = new ImageIcon("src/images/wallpaper.jpeg");
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
         label.setIcon(icon);
     }
     
+    //return a image
     public static void setImage(JLabel label, String img) {
         ImageIcon image = new ImageIcon("src/images/"+img);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
         label.setIcon(icon);
     }
     
+    //return a icon image to elements
     public Icon setIcon(JLabel label, String img){
         ImageIcon image = new ImageIcon("src/images/"+img);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
@@ -48,34 +50,41 @@ public class JavaHotel extends JFrame {
  
     }
     
-    @Override
+    //catch a icon image object
+    @Override 
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("images/icon.png"));
         return retValue;
 
     }
    
+    //set a icon image object
     @Override
     public void setIconImage(Image image) {
         super.setIconImage(image);
     }
     
+    //set default Color RGB teme
     public static Color painBakground(){
         Color color = new Color(174,204,50);
         return color;
     } 
     
+    //set default Font style teme
     public static Font setFont(){
        Font f = new Font("Roboto", 0, 12);
        return f;
     }
     
+    //get frame width minus borders
     private int getFrameWidth(){
         int x= getSize().width - 2;
         return x;
         
     }
-    public void setFrameStatebar() {
+    
+    //build top bar decoration for all frame
+    public void buildTopBarDecor() {
         statusbar = new JPanel();
         exitPanel = new JPanel();
         exitButtonText = new JLabel();
@@ -88,12 +97,12 @@ public class JavaHotel extends JFrame {
         statusbar.setLayout(null);
         statusbar.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent evt) {
-                statebarMousePressed(evt);
+                topBarMousePressed(evt);
             }
         });
         statusbar.addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseDragged(MouseEvent evt) {
-                statebarMouseDragged(evt);
+                topBarMouseDragged(evt);
             }
         });
 
@@ -154,15 +163,19 @@ public class JavaHotel extends JFrame {
         setImage(minimizeButtonLabel, "btnGreen.png");
         
     }
-    private void statebarMousePressed(MouseEvent evt) {
+    
+    //sets the window movement
+    private void topBarMousePressed(MouseEvent evt) {
         Xmouse = evt.getX();
         Ymouse = evt.getY();
     }
-    private void statebarMouseDragged(MouseEvent evt) {
+    private void topBarMouseDragged(MouseEvent evt) {
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         this.setLocation(x - Xmouse, y - Ymouse);
     }
+    
+    //set button functionality
     private void exitPanelMouseClicked(MouseEvent evt) {
         System.exit(0);
     }
