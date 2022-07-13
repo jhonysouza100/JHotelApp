@@ -1,5 +1,6 @@
 package resources;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class ConnectionDB {
     public static Connection connectionDB(){
@@ -13,6 +14,8 @@ public class ConnectionDB {
             
         }catch(SQLException e){
             System.err.println("Database connection error: "+e);
+            JOptionPane.showMessageDialog(null, "Database connection fatal error!");
+            
         }
            return(null);
     }

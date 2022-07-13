@@ -36,7 +36,7 @@ public class Login extends JavaHotel {
     public static String userName;
     private String user, pass;
 
-    String img1, img2;
+    String img1;
 
     public Login() {
         initParametersLogin();
@@ -70,10 +70,8 @@ public class Login extends JavaHotel {
         background = new JLabel();
 
         img1 = "login1.png";
-        img2 = "login2.png";
-        loginLabel.setSize(140, 40);
-        loginLabel.setIcon(setIcon(loginLabel, img1));
-        loginButton.setBackground(new Color(174, 204, 50));
+        
+        loginButton.setOpaque(false);
         loginButton.setLayout(new BorderLayout(0, 0));
         loginButton.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
@@ -89,6 +87,9 @@ public class Login extends JavaHotel {
             }
         });
         loginButton.setBounds(350, 300, 140, 40);
+        setBoundsInside(loginLabel, loginButton);
+        setImage(loginLabel, img1);
+        
         loginButton.add(loginLabel, BorderLayout.CENTER);
         getContentPane().add(loginButton);
 
@@ -192,12 +193,11 @@ public class Login extends JavaHotel {
     }
 
     private void loginButtonMouseEntered(MouseEvent evt) {
-        loginLabel.setIcon(setIcon(loginLabel, img2));
-        setImage(loginLabel, "login1");
+        resizeButton(loginButton, loginLabel, 10, img1);
     }
 
     private void loginButtonMouseExited(MouseEvent evt) {
-        loginLabel.setIcon(setIcon(loginLabel, img1));
+        resizeButton(loginButton, loginLabel, -10, img1);
     }
 
     private void loginButtonMouseClicked(MouseEvent evt) {
@@ -252,7 +252,7 @@ public class Login extends JavaHotel {
                 textPass.setText("");
             }
         } catch (SQLException e) {
-            System.err.println("Login button error: " + e);
+            System.err.println("Login button error: " + e);    
         }
     }
 

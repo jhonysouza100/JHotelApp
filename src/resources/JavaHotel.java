@@ -1,5 +1,6 @@
 package resources;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -16,13 +17,13 @@ import javax.swing.SwingConstants;
 
 public class JavaHotel extends JFrame {
 
-    private JPanel statusbar;
+    private JPanel topBar;
     private JLabel exitButtonText;
     private JLabel exitButtonLabel;
-    private JPanel exitPanel;
-    private JLabel minimizeButtonText;
-    private JPanel minimizePanel;
-    private JLabel minimizeButtonLabel;
+    private JPanel exitButton;
+    private JLabel minButtonText;
+    private JPanel minButton;
+    private JLabel minButtonLabel;
     private int Xmouse, Ymouse;
     public JavaHotel(){
        setIconImage(getIconImage());//set default icon for all frame
@@ -35,14 +36,14 @@ public class JavaHotel extends JFrame {
         label.setIcon(icon);
     }
     
-    //return a image
+    ////to set an image
     public static void setImage(JLabel label, String img) {
         ImageIcon image = new ImageIcon("src/images/"+img);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
         label.setIcon(icon);
     }
     
-    //return a icon image to elements
+    //to set a icon image in elements
     public Icon setIcon(JLabel label, String img){
         ImageIcon image = new ImageIcon("src/images/"+img);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
@@ -76,6 +77,23 @@ public class JavaHotel extends JFrame {
        return f;
     }
     
+    //set bounds inside container?????!!!!
+    public void setBoundsInside(JLabel label, JPanel container) {
+        label.setSize(container.getSize().width, container.getSize().height);
+    }
+    
+    //resize button method (panel, label, intResize, img)
+    public void resizeButton(JPanel panel, JLabel label, int resize, String img){
+        int x=panel.getX()-(resize/2);//reposition x
+        int y=panel.getY()-(resize/2);// reposition y
+        int width=panel.getSize().width+resize;//new size width
+        int height=panel.getSize().height+resize;//new height
+        panel.setBounds(x,y,width,height);
+        
+        label.setSize(panel.getSize().width, panel.getSize().height);
+        setImage(label, img);
+    }
+    
     //get frame width minus borders
     private int getFrameWidth(){
         int x= getSize().width - 2;
@@ -85,30 +103,32 @@ public class JavaHotel extends JFrame {
     
     //build top bar decoration for all frame
     public void buildTopBarDecor() {
-        statusbar = new JPanel();
-        exitPanel = new JPanel();
+        topBar = new JPanel();
+        exitButton = new JPanel();
         exitButtonText = new JLabel();
         exitButtonLabel = new JLabel();
-        minimizePanel = new JPanel();
-        minimizeButtonText =new JLabel();
-        minimizeButtonLabel = new JLabel();
+        minButton = new JPanel();
+        minButtonText =new JLabel();
+        minButtonLabel = new JLabel();
         
-        statusbar.setOpaque(false);
-        statusbar.setLayout(null);
-        statusbar.addMouseListener(new MouseAdapter() {
+        topBar.setBounds(1, 1, getFrameWidth(), 30);
+        topBar.setOpaque(false);
+        topBar.setLayout(null);
+        topBar.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent evt) {
                 topBarMousePressed(evt);
             }
         });
-        statusbar.addMouseMotionListener(new MouseMotionAdapter() {
+        topBar.addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseDragged(MouseEvent evt) {
                 topBarMouseDragged(evt);
             }
         });
 
-        exitPanel.setOpaque(false);
-        exitPanel.setLayout(null);
-        exitPanel.addMouseListener(new MouseAdapter() {
+        exitButton.setBounds(5, 5, 17, 17);
+        exitButton.setOpaque(false);
+        exitButton.setLayout(new BorderLayout(0,0));
+        exitButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 exitPanelMouseClicked(evt);
             }
@@ -121,18 +141,21 @@ public class JavaHotel extends JFrame {
                 exitPanelMouseExited(evt);
             }
         });
-        
-        exitPanel.add(exitButtonText);
-        exitButtonText.setBounds(0, 0, 17, 17);
-        exitPanel.add(exitButtonLabel);
-        exitButtonLabel.setBounds(0, 0, 17, 17);
 
-        statusbar.add(exitPanel);
-        exitPanel.setBounds(5, 5, 17, 17);
+        exitButtonText.setFont(new Font("Roboto Black", 0, 15));
+        exitButtonText.setHorizontalAlignment(SwingConstants.CENTER);
+        setBoundsInside(exitButtonText, exitButton);
         
-        minimizePanel.setOpaque(false);
-        minimizePanel.setLayout(null);
-        minimizePanel.addMouseListener(new MouseAdapter() {
+        setBoundsInside(exitButtonLabel, exitButton);
+        setImage(exitButtonLabel, "btnRed.png");
+        
+        exitButton.add(exitButtonText, BorderLayout.CENTER);
+        exitButton.add(exitButtonLabel, BorderLayout.CENTER);
+        
+        minButton.setBounds(29, 5, 17, 17);
+        minButton.setOpaque(false);
+        minButton.setLayout(new BorderLayout(0,0));
+        minButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 minimizePanelMouseClicked(evt);
             }
@@ -146,22 +169,19 @@ public class JavaHotel extends JFrame {
             }
         });
         
-        minimizePanel.add(minimizeButtonText);
-        minimizeButtonText.setBounds(0, 0, 17, 17);
+        minButtonText.setFont(new Font("Roboto Black", 0, 24));
+        minButtonText.setHorizontalAlignment(SwingConstants.CENTER);
+        setBoundsInside(minButtonText, minButton);
         
-        minimizePanel.add(minimizeButtonLabel);
-        minimizeButtonLabel.setBounds(0, 0, 17, 17);
+        setBoundsInside(minButtonLabel, minButton);
+        setImage(minButtonLabel, "btnGreen.png");
+        
+        minButton.add(minButtonText, BorderLayout.CENTER);
+        minButton.add(minButtonLabel, BorderLayout.CENTER);
 
-        statusbar.add(minimizePanel);
-        minimizePanel.setBounds(28, 5, 17, 17);
-        
-        getContentPane().add(statusbar);
-        statusbar.setBounds(1, 1, getFrameWidth(), 30);
-        
-        
-        setImage(exitButtonLabel, "btnRed.png");
-        setImage(minimizeButtonLabel, "btnGreen.png");
-        
+        topBar.add(exitButton);
+        topBar.add(minButton);        
+        getContentPane().add(topBar);   
     }
     
     //sets the window movement
@@ -180,26 +200,24 @@ public class JavaHotel extends JFrame {
         System.exit(0);
     }
     private void exitPanelMouseEntered(MouseEvent evt) {
-        exitButtonText.setFont(new Font("Roboto Black", 0, 14));
-        exitButtonText.setHorizontalAlignment(SwingConstants.CENTER);
-        exitButtonText.setText("x");
-        setImage(exitButtonLabel, "btnRedPressed.png");
+        resizeButton(exitButton, exitButtonLabel, 2, "btnRedPressed.png");
+        exitButtonText.setSize(exitButton.getSize().width,exitButton.getSize().height);
+        exitButtonText.setText("x");   
     }
     private void exitPanelMouseExited(MouseEvent evt) {
+        resizeButton(exitButton, exitButtonLabel, -2, "btnRed.png");
         exitButtonText.setText("");
-        setImage(exitButtonLabel, "btnRed.png");
     }
     private void minimizePanelMouseClicked(MouseEvent evt) {
         setExtendedState(ICONIFIED);
     }
     private void minimizePanelMouseEntered(MouseEvent evt) {
-        minimizeButtonText.setFont(new Font("Roboto Black", 0, 24));
-        minimizeButtonText.setHorizontalAlignment(SwingConstants.CENTER);
-        minimizeButtonText.setText("-");
-        setImage(minimizeButtonLabel, "btnGreenPressed.png");
+        resizeButton(minButton, minButtonLabel, 2, "btnGreenPressed.png");
+        minButtonText.setSize(minButton.getSize().width,minButton.getSize().height);
+        minButtonText.setText("-");
     }
     private void minimizePanelMouseExited(MouseEvent evt) {
-        minimizeButtonText.setText("");
-        setImage(minimizeButtonLabel, "btnGreen.png");
+        resizeButton(minButton, minButtonLabel, -2, "btnGreen.png");
+        minButtonText.setText("");
     }
 }
