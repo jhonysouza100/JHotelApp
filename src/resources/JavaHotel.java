@@ -25,8 +25,10 @@ public class JavaHotel extends JFrame {
     private JPanel minButton;
     private JLabel minButtonLabel;
     private int Xmouse, Ymouse;
+    
     public JavaHotel(){
-       setIconImage(getIconImage());//set default icon for all frame
+        //set default icon for all frame
+       setIconImage(getIconImage());
     }
     
     //set the wallpaper
@@ -67,17 +69,17 @@ public class JavaHotel extends JFrame {
     
     //set default Color RGB teme
     public static Color painBakground(){
+    //set default Font style teme
         Color color = new Color(174,204,50);
         return color;
     } 
     
-    //set default Font style teme
     public static Font setFont(){
        Font f = new Font("Roboto", 0, 12);
        return f;
     }
     
-    //set bounds inside container?????!!!!
+    //set bounds inside container
     public void setBoundsInside(JLabel label, JPanel container) {
         label.setSize(container.getSize().width, container.getSize().height);
     }
@@ -97,8 +99,7 @@ public class JavaHotel extends JFrame {
     //get frame width minus borders
     private int getFrameWidth(){
         int x= getSize().width - 2;
-        return x;
-        
+        return x;    
     }
     
     //build top bar decoration for all frame
@@ -189,6 +190,7 @@ public class JavaHotel extends JFrame {
         Xmouse = evt.getX();
         Ymouse = evt.getY();
     }
+    
     private void topBarMouseDragged(MouseEvent evt) {
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
