@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JHotel interface official website</title>
     <link rel="stylesheet" href="indexSource/styles.css" />
 </head>
 <body>
@@ -16,7 +15,5 @@
             The interface was created with the function of facilitating the work of the hotel receptionist, which seeks to provide assistance and control in their daily cashier tasks, stock management, check-in, check-out and rooming.
         </p>
     </section>
-    
-    <footer></footer>
 </body>
 </html>
