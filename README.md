@@ -14,7 +14,7 @@
             This project is about a user interface for the Java Hotel Iguazu, the most prestigious hotel in the area, which receives thousands of travelers from all over the world throughout the year, seven days a week, 24 hours a day.
             The interface was created with the function of facilitating the work of the hotel receptionist, which seeks to provide assistance and control in their daily cashier tasks, stock management, check-in, check-out and rooming.
         </p>
-        <img src="indexSource/iguazu-warerfallsIII.jpg" alt="beta image">
+        <img src="indexSource/iguazu-waterfallsIII.jpg" alt="beta image">
     </section>
 </body>
 </html>
